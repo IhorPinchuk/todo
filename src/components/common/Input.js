@@ -12,8 +12,7 @@ const Input = styled.input`
   padding-bottom: 14px;
   padding-left: 18px;
   padding-right: 40px;
-  border: 1px solid transparent;
-  border-right: none;
+  border: 1px solid transparent; 
   border-radius: 14px;
   outline: transparent;
 
