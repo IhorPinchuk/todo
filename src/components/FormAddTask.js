@@ -19,7 +19,7 @@ const FormAddTask = ({ setState }) => {
 
   const onSubmitForm = (data) => {
     if (data.newTaskText.trim() !== "") {
-      const newTask = { id: uuidv4(), name: data.newTaskText };
+      const newTask = { id: uuidv4(), name: data.newTaskText, isActive: true };
       setState((prevState) => ({
         ...prevState,
         tasks: [...prevState.tasks, newTask],

@@ -1,15 +1,15 @@
 import Ul from "../common/Ul";
 import ToDoListItem from "./ToDoListItem";
 
-const ToDoList = ({ tasksArray, state, setState }) => {
+const ToDoList = ({ tasksArray, setState }) => {
   return (
     <Ul>
-      {tasksArray.map(({ id, name }) => (
+      {tasksArray.map(({ id, name, isActive }) => (
         <ToDoListItem
           key={id}
           id={id}
           name={name}
-          state={state}
+          isActive={isActive}          
           setState={setState}
         />
       ))}

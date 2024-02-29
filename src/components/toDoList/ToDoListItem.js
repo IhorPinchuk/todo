@@ -4,18 +4,19 @@ import Btn from "../common/Btn";
 import WrapperText from "../common/WrapperText";
 import CheckboxTask from "../checkboxTask/CheckboxTask";
 
-const ToDoListItem = ({ id, name, state, setState }) => {
-  const deleteTask = (id) => {
-    const filteredList = state.tasks.filter((task) => task.id !== id);
-    setState((prevState) => ({ ...prevState, tasks: filteredList }));
+const ToDoListItem = ({ id, name, isActive, setState }) => {
+  const deleteTask = (id) => {    
+    setState((prevState) => {
+      const filteredList = prevState.tasks.filter((task) => task.id !== id);
+      return { ...prevState, tasks: filteredList }});
   };
 
   return (
     <Li>
       <WrapperText>
-        <Text>{name}</Text>
+        <Text $lineThrough={isActive}>{name}</Text>
       </WrapperText>
-      <CheckboxTask />
+      <CheckboxTask id={id} isActive={isActive} setState={setState} />
       <Btn onClick={() => deleteTask(id)}>Delete task</Btn>
     </Li>
   );
