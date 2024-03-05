@@ -6,7 +6,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 5px;
-/* margin-bottom: 20px; */
+margin-bottom: ${(props) => (props.$marginBottom ? "20px" : "0")};
 `;
 
 export default WrapperFlex;

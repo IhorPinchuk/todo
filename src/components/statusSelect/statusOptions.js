@@ -1,5 +1,5 @@
 export const statusOptions = [
-    {value: "All", label: "All"},
-    {value: "Active", label: "Active"},
-    {value: "Completed", label: "Completed"},
+    {value: "all", label: "All"},
+    {value: "active", label: "Active"},
+    {value: "completed", label: "Completed"},
 ]

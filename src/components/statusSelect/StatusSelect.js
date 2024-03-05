@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import Select from "../common/Select";
 import Option from "../common/Option";
 import {statusOptions} from "./statusOptions";
 
-const StatusSelect = () => {
-const [selectedOption, setSelectedOption] = useState("");
-console.log(selectedOption)
+const StatusSelect = ({state, setState}) => {
+
 const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value)
+  setState((prevState) => ({
+    ...prevState,
+    filterSelectedOption: e.target.value,
+  })) 
 }
 
   return (
-    <Select value={selectedOption}  onChange={handleOptionChange}>
+    <Select value={state.filterSelectedOption}  onChange={handleOptionChange}>
       {statusOptions.map((option) => (
         <Option key={option.value} value={option.value}>{option.label}</Option>
       ))}
