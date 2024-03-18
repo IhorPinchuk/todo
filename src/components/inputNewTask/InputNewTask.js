@@ -1,5 +1,5 @@
-import Input from "./common/Input";
-import Label from "./common/Label";
+import Input from "../common/Input";
+import Label from "../common/Label";
 
 const InputNewTask = ({ value, inputNewTaskChanch, handleKeyDown }) => {
   return (

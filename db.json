@@ -1,0 +1,32 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Todo 1",
+      "description": "Lorem 1",
+      "checked": false,
+      "creationDate": "07-03-2024"
+    },
+    {
+      "id": 2,
+      "title": "Todo 2",
+      "description": "Lorem 2",
+      "checked": true,
+      "creationDate": "10-03-2024"
+    },
+    {
+      "id": 3,
+      "title": "Todo 3",
+      "description": "Lorem 3",
+      "checked": false,
+      "creationDate": "17-03-2025"
+    },
+    {
+      "title": "hhh",
+      "description": "yjjjjj",
+      "checked": false,
+      "creationDate": "18.03.2024",
+      "id": 4
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import GlobalStyles from "./components/GlobalStyles";
-import ToDo from "./components/ToDo";
+import ToDo from "./components/toDo/ToDo";
 
 function App() {
   return (

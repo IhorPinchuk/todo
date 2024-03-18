@@ -1,5 +1,5 @@
-import Label from "./common/Label";
-import Input from "./common/Input";
+import Label from "../common/Label";
+import Input from "../common/Input";
 import { useEffect, useState } from "react";
 
 const InputFilter = ({ state, setState }) => {

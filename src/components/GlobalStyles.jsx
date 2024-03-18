@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
             --input-bg-color: #292986;  
             --border-input-hover-color: #0e20c7e8;          
             --scrollbar-thumb-bg-color: rgb(6, 57, 133);
-            --scrollbar-track-bg-color: transparent;            
+            --scrollbar-track-bg-color: transparent;   
         }
 
         body {

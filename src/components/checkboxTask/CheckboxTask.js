@@ -3,15 +3,14 @@ import WrapperFlex from "../common/WrapperFlex";
 import LabelCheckbox from "./LabelCheckbox";
 import InputCheckbox from "./InputCheckbox";
 
-const CheckboxTask = ({ id, isActive, setState }) => {
-  // console.log(id)
+const CheckboxTask = ({ id, checked, setState }) => {
   const handleCheckboxChange = (id) => {
-    // console.log(e.target.value);
     setState((prevState) => ({
       ...prevState,
-      tasks: prevState.tasks.map(task => task.id === id ? {...task, isActive: !task.isActive} : task)
-    }))
-    
+      tasks: prevState.tasks.map((task) =>
+        task.id === id ? { ...task, checked: !task.checked } : task
+      ),
+    }));
   };
 
   return (
@@ -19,7 +18,7 @@ const CheckboxTask = ({ id, isActive, setState }) => {
       <InputCheckbox
         type="checkbox"
         name="checkboxTask"
-        checked={!isActive}
+        checked={checked}
         onChange={() => handleCheckboxChange(id)}
       />
       <LabelCheckbox>Done</LabelCheckbox>
