@@ -9,10 +9,18 @@ const GlobalStyles = createGlobalStyle`
             --btn-text-color: rgba(255, 255, 255, 1);
             --btn-bg-color: rgba(52, 112, 255, 1);
             --btn-hover-bg-color: rgba(11, 68, 205, 1);
+            --btn-disabled-bg-color: #636468;
             --input-bg-color: #292986;  
-            --border-input-hover-color: #0e20c7e8;          
+            --border-input-hover-color: #0e20c7e8;   
+
             --scrollbar-thumb-bg-color: rgb(6, 57, 133);
-            --scrollbar-track-bg-color: transparent;   
+            --scrollbar-track-bg-color: transparent;
+            
+            --modal-bg-color: rgb(76, 78, 81);
+            --modal-window-shadow: rgba(22, 22, 22, 0.05);
+            --modal-title-color: #ffffff;
+            --modal-icon-color: #ffffff80;
+            --header-theme-select-text-color-hover: #BEDBB0;
         }
 
         body {

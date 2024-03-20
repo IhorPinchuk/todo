@@ -4,15 +4,8 @@ import ToDoListItem from "./ToDoListItem";
 const ToDoList = ({ tasksArray, setState }) => {
   return (
     <Ul>
-      {tasksArray.map(({ id, title, description, checked }) => (
-        <ToDoListItem
-          key={id}
-          id={id}
-          title={title}
-          description={description}
-          checked={checked}
-          setState={setState}
-        />
+      {tasksArray.map((task) => (
+        <ToDoListItem key={task.id} task={task} setState={setState} />
       ))}
     </Ul>
   );

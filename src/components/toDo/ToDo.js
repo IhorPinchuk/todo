@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 
 import Title from "../title/Title";
-import ToDoList from "../toDoList/ToDoList";
 import SectionStyled from "../common/SectionStyled";
 import ContainerStyled from "../common/ContainerStyled";
 import NumberToDo from "../numberToDo/NumberToDo";
-import FormAddTask from "../formAddTask/FormAddTask";
 import StatusSelect from "../statusSelect/StatusSelect";
 import WrapperFlex from "../common/WrapperFlex";
 import InputFilter from "../inputFilter/InputFilter";
 import numberToDoText from "../numberToDo/numberToDoText";
 import { useFetch } from "../../hooks/useFetch";
-import LoaderThreeCircles from "../loaders/LoaderThreeCircles";
+import LoaderThreeCircles from "../loaders/loaderThreeCircles/LoaderThreeCircles";
+import Modal from "../modals/modal/Modal";
+import ModalAddEditTask from "../modals/modalAddEditTask/ModalAddEditTask";
+import Btn from "../common/Btn";
+import todoListDraw from "../toDoList/todoListDraw";
 
 const ToDo = () => {
   const [state, setState] = useState({
@@ -20,7 +22,12 @@ const ToDo = () => {
     filter: "",
   });
 
-  const { data: todos, isLoading, error } = useFetch("todos");
+  const { data: todos, isLoading, error, fetchData } = useFetch();
+  const [isOpenModalAddTask, setIsOpenModalAddTask] = useState(false);
+
+  useEffect(() => {
+    fetchData("todos");
+  }, [fetchData]);
 
   useEffect(() => {
     if (todos) {
@@ -31,18 +38,14 @@ const ToDo = () => {
     }
   }, [todos]);
 
-  if (error) {
-    return <p>Something went wrong! {error}</p>;
-  }
-
   const { tasks, filterSelectedOption, filter } = state;
   let filteredSelectedTasks = tasks;
   let filteredTasks = filteredSelectedTasks;
 
   if (filterSelectedOption === "active") {
-    filteredSelectedTasks = tasks.filter((task) => task.checked);
-  } else if (filterSelectedOption === "completed") {
     filteredSelectedTasks = tasks.filter((task) => !task.checked);
+  } else if (filterSelectedOption === "completed") {
+    filteredSelectedTasks = tasks.filter((task) => task.checked);
   }
 
   if (filter) {
@@ -53,29 +56,52 @@ const ToDo = () => {
     filteredTasks = filteredSelectedTasks;
   }
 
-  
-  
+  const handleToogleModalAddTask = () => {
+    setIsOpenModalAddTask((prevIsOpenModalAddTask) => !prevIsOpenModalAddTask);
+  };
+
   return (
-    <SectionStyled>
-      <ContainerStyled>
-        <Title>TodO List</Title>
-        <FormAddTask setState={setState} />
-        <WrapperFlex $marginBottom>
-          <StatusSelect state={state} setState={setState} />
-        </WrapperFlex>
-        <WrapperFlex $marginBottom>
-          <InputFilter state={state} setState={setState} />
-        </WrapperFlex>
-        <NumberToDo>
-          {numberToDoText(filteredTasks, state.filterSelectedOption)}
-        </NumberToDo>
-        {isLoading ? (
-          <LoaderThreeCircles isLoading={isLoading} />
-        ) : (
-          <ToDoList tasksArray={filteredTasks} setState={setState} />
-        )}
-      </ContainerStyled>
-    </SectionStyled>
+    <>
+      <SectionStyled>
+        <ContainerStyled>
+          <Title>TodO List</Title>
+          <Btn
+            $marginLeftAuto
+            $marginRightAuto
+            $marginBottom
+            type="button"
+            name="addTask"
+            onClick={handleToogleModalAddTask}
+          >
+            Add task
+          </Btn>
+          <WrapperFlex $marginBottom>
+            <StatusSelect state={state} setState={setState} />
+          </WrapperFlex>
+          <WrapperFlex $marginBottom>
+            <InputFilter state={state} setState={setState} />
+          </WrapperFlex>
+          <NumberToDo>
+            {numberToDoText(filteredTasks, state.filterSelectedOption)}
+          </NumberToDo>
+          {isLoading ? (
+            <LoaderThreeCircles isLoading={isLoading} />
+          ) : (
+            todoListDraw(error, filteredTasks, setState)
+          )}
+        </ContainerStyled>
+      </SectionStyled>
+      <Modal
+        isOpen={isOpenModalAddTask}
+        setIsOpen={setIsOpenModalAddTask}
+        children={
+          <ModalAddEditTask
+            setState={setState}
+            setIsOpenModalAddTask={setIsOpenModalAddTask}
+          />
+        }
+      />
+    </>
   );
 };
 

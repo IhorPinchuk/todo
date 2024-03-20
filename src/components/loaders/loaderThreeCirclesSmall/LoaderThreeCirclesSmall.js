@@ -1,10 +1,11 @@
 import { ThreeCircles } from "react-loader-spinner";
-import style from "./LoaderThreeCircles.module.css";
+import style from "./LoaderThreeCirclesSmall.module.css";
 
-const LoaderThreeCircles = ({ isLoading }) => {
+const LoaderThreeCirclesSmall = ({ isLoading }) => {
   return (
     <ThreeCircles
-      visible={isLoading}
+      visible={isLoading}    
+      height={20}
       outerCircleColor="#1212ca"
       innerCircleColor="#1616ef"
       middleCircleColor="#4545f0"
@@ -14,4 +15,4 @@ const LoaderThreeCircles = ({ isLoading }) => {
   );
 };
 
-export default LoaderThreeCircles;
+export default LoaderThreeCirclesSmall;
