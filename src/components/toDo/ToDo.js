@@ -26,8 +26,10 @@ const ToDo = () => {
   const [isOpenModalAddTask, setIsOpenModalAddTask] = useState(false);
 
   useEffect(() => {
-    fetchData("todos");
-  }, [fetchData]);
+    if (!todos) {
+      fetchData("todos");
+    }
+  }, [fetchData, todos]);
 
   useEffect(() => {
     if (todos) {
@@ -59,6 +61,7 @@ const ToDo = () => {
   const handleToogleModalAddTask = () => {
     setIsOpenModalAddTask((prevIsOpenModalAddTask) => !prevIsOpenModalAddTask);
   };
+  console.log(tasks);
 
   return (
     <>

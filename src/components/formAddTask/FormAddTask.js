@@ -29,7 +29,7 @@ const FormAddTask = ({ payload }) => {
   const { dataAdd, isLoadingAddData, errorAddData, postData } = usePost();
   const { dataChange, isLoadingChangeData, errorChangeData, putData } =
     usePut();
-  
+
   useEffect(() => {
     if (dataTask) {
       setValue("newTaskTitle", dataTask.title);
@@ -53,21 +53,12 @@ const FormAddTask = ({ payload }) => {
 
   useEffect(() => {
     if (dataChange && Object.keys(dataChange).length !== 0) {
-      setState((prevState) => {
-        const taskIndex = prevState.tasks.findIndex(
-          (task) => task.id === dataChange.id
-        );
-        if (taskIndex !== -1) {
-          const newTasks = [...prevState.tasks];
-          newTasks[taskIndex] = dataChange;
-          return {
-            ...prevState,
-            tasks: newTasks,
-          };
-        } else {
-          return prevState;
-        }
-      });
+      setState((prevState) => ({
+        ...prevState,
+        tasks: prevState.tasks.map((task) =>
+          task.id === dataChange.id ? { ...task, ...dataChange } : task
+        ),
+      }));
 
       setIsOpenModalEditTask(
         (prevIsOpenModalEditTask) => !prevIsOpenModalEditTask

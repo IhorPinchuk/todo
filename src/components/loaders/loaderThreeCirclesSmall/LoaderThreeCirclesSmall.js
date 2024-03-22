@@ -4,7 +4,8 @@ import style from "./LoaderThreeCirclesSmall.module.css";
 const LoaderThreeCirclesSmall = ({ isLoading }) => {
   return (
     <ThreeCircles
-      visible={isLoading}    
+      visible={isLoading}  
+      width={20}  
       height={20}
       outerCircleColor="#1212ca"
       innerCircleColor="#1616ef"
