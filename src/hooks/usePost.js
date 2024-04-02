@@ -10,7 +10,7 @@ export const usePost = () => {
     setIsLoadingAddData(true);
     try {
       const responce = await axios.post(url, data);
-      if (responce.status === 201) {
+      if (responce.data) {
         setDataAdd(responce.data);
       }
     } catch (error) {

@@ -11,7 +11,7 @@ export const useFetch = () => {
     setIsLoading(true);
     try {
       const responce = await axios.get(baseUrl + url);           
-      if (responce.statusText === "OK") {       
+      if (responce.data) {       
         setData(responce.data);
       }      
     } catch (error) {

@@ -10,9 +10,11 @@ const GlobalStyles = createGlobalStyle`
             --btn-bg-color: rgba(52, 112, 255, 1);
             --btn-hover-bg-color: rgba(11, 68, 205, 1);
             --btn-disabled-bg-color: #636468;
+            --btn-delete-bg-color: #dc0b0b;
+            --btn-delete-hover-bg-color: #8e1806;
             --input-bg-color: #292986;  
-            --border-input-hover-color: #0e20c7e8;   
-
+            --border-input-hover-color: #0e20c7e8;  
+            
             --scrollbar-thumb-bg-color: rgb(6, 57, 133);
             --scrollbar-track-bg-color: transparent;
             
@@ -20,7 +22,12 @@ const GlobalStyles = createGlobalStyle`
             --modal-window-shadow: rgba(22, 22, 22, 0.05);
             --modal-title-color: #ffffff;
             --modal-icon-color: #ffffff80;
-            --header-theme-select-text-color-hover: #BEDBB0;
+
+            --bg-color-active-task: #95e18d;
+            --bg-color-completed-task: #de8585;
+            --border-color-active-task: green;
+            --border-color-completed-task: red;
+            /* --header-theme-select-text-color-hover: rgb(191, 240, 166); */
         }
 
         body {

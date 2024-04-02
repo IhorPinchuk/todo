@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 const Textarea = styled.textarea`
   box-sizing: border-box;
-  height: 100px;
+  /* height: 100px; */
   font-family: "Manrope", sans-serif;
   font-size: 18px;
-  line-height: 0.9;
+  line-height: 1.2;
   background-color: var(--input-bg-color);
   padding-top: 14px;
   padding-bottom: 14px;
   padding-left: 18px;
-  padding-right: 40px;
+  padding-right: 18px;
   border: 1px solid transparent;
   border-radius: 14px;
   outline: transparent;

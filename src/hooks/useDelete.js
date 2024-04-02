@@ -18,7 +18,7 @@ const useDelete = () => {
     }
   }
 
-  return {isLoadingDelete, errorDelete, setErrorDelete, deleteData};
+  return {isLoadingDelete, errorDelete, deleteData};
 }
 
 export default useDelete;

@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-import WrapperFlex from "../common/WrapperFlex";
-import LabelCheckbox from "./LabelCheckbox";
-import InputCheckbox from "./InputCheckbox";
-import usePut from "../../hooks/usePut";
-import currentDate from "../../helpers/currentDate";
-import LoaderThreeCirclesSmall from "../loaders/loaderThreeCirclesSmall/LoaderThreeCirclesSmall";
 import { ToastContainer, toast } from "react-toastify";
 
-const CheckboxTask = ({ task, setState }) => {
+import usePut from "../../hooks/usePut";
+import { InputCheckbox, LabelCheckbox } from "./CheckboxTask.styled";
+import currentDate from "../../helpers/currentDate";
+import LoaderThreeCirclesSmall from "../loaders/loaderThreeCirclesSmall/LoaderThreeCirclesSmall";
+
+const CheckboxTask = ({ task, setTasks }) => {
   const { id, checked } = task;
   const { dataChange, isLoadingChangeData, errorChangeData, putData } =
     usePut();
@@ -29,14 +28,13 @@ const CheckboxTask = ({ task, setState }) => {
 
   useEffect(() => {
     if (dataChange && Object.keys(dataChange).length !== 0) {
-      setState((prevState) => ({
-        ...prevState,
-        tasks: prevState.tasks.map((task) =>
+      setTasks((prevTasks) => 
+      prevTasks.map((task) =>
           task.id === id ? { ...task, checked: !task.checked } : task
         ),
-      }));
+      );
     }
-  }, [id, setState, dataChange]);
+  }, [id, setTasks, dataChange]);
 
   const handleCheckboxChange = (id) => {
     const newCheckedTask = {
@@ -52,15 +50,16 @@ const CheckboxTask = ({ task, setState }) => {
       {isLoadingChangeData ? (
         <LoaderThreeCirclesSmall />
       ) : (
-        <WrapperFlex>
+        <>
+          {checked && <LabelCheckbox htmlFor={`listTaskStatus${id}`}>Done</LabelCheckbox>}
           <InputCheckbox
+          id={`listTaskStatus${id}`}
             type="checkbox"
             name="checkboxTask"
             checked={checked}
             onChange={() => handleCheckboxChange(id)}
           />
-          {checked && <LabelCheckbox>Done</LabelCheckbox>}
-        </WrapperFlex>
+        </>
       )}
       <ToastContainer />
     </>

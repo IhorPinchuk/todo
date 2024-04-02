@@ -10,7 +10,7 @@ const usePut = () => {
     setIsLoadingChangeData(true);
     try {
       const responce = await axios.put(url, data);
-      if (responce.status === 200) {
+      if (responce.data) {
         setDataChange(responce.data);
       }
     } catch (error) {

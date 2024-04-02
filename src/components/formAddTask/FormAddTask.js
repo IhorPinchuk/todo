@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
-
-import Form from "../common/Form";
-import WrapperFlex from "../common/WrapperFlex";
-import Label from "../common/Label";
-import Input from "../common/Input";
 import { useForm } from "react-hook-form";
-import Btn from "../common/Btn";
-import ErrorTitleInputNewTask from "../Error/ErrorTitleInputNewTask";
-import Textarea from "../common/Textarea";
 
-import InputCheckbox from "../checkboxTask/InputCheckbox";
+import usePut from "../../hooks/usePut";
+import {
+  BtnForm,
+  Form,
+  InputForm,
+  LabelForm,
+  TextareaForm,
+  WrapperFlexForm,
+} from "./FormAddTask.styled";
+import ErrorTitleInputNewTask from "../Error/ErrorTitleInputNewTask";
 import currentDate from "../../helpers/currentDate";
 import { usePost } from "../../hooks/usePost";
 import LoaderThreeCirclesSmall from "../loaders/loaderThreeCirclesSmall/LoaderThreeCirclesSmall";
 import ErrorMessage from "../Error/ErrorMessage";
-import usePut from "../../hooks/usePut";
+import { InputCheckbox } from "../checkboxTask/CheckboxTask.styled";
 
 const FormAddTask = ({ payload }) => {
   const {
@@ -24,7 +25,7 @@ const FormAddTask = ({ payload }) => {
     formState: { errors },
     setValue,
   } = useForm();
-  const { setState, setIsOpenModalAddTask, dataTask, setIsOpenModalEditTask } =
+  const { setTasks, setIsOpenModalAddTask, dataTask, setIsOpenModalEditTask } =
     payload;
   const { dataAdd, isLoadingAddData, errorAddData, postData } = usePost();
   const { dataChange, isLoadingChangeData, errorChangeData, putData } =
@@ -40,31 +41,27 @@ const FormAddTask = ({ payload }) => {
 
   useEffect(() => {
     if (dataAdd && Object.keys(dataAdd).length !== 0) {
-      setState((prevState) => ({
-        ...prevState,
-        tasks: [...prevState.tasks, dataAdd],
-      }));
+      setTasks((prevTasks) => [...prevTasks, dataAdd]);
       reset();
       setIsOpenModalAddTask(
         (prevIsOpenModalAddTask) => !prevIsOpenModalAddTask
       );
     }
-  }, [dataAdd, setState, reset, setIsOpenModalAddTask]);
+  }, [dataAdd, setTasks, reset, setIsOpenModalAddTask]);
 
   useEffect(() => {
     if (dataChange && Object.keys(dataChange).length !== 0) {
-      setState((prevState) => ({
-        ...prevState,
-        tasks: prevState.tasks.map((task) =>
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
           task.id === dataChange.id ? { ...task, ...dataChange } : task
-        ),
-      }));
+        )
+      );
 
       setIsOpenModalEditTask(
         (prevIsOpenModalEditTask) => !prevIsOpenModalEditTask
       );
     }
-  }, [dataChange, setState, setIsOpenModalEditTask]);
+  }, [dataChange, setTasks, setIsOpenModalEditTask]);
 
   const onSubmitFormAddTask = (data) => {
     if (data.newTaskTitle.trim() !== "" && data.newTaskText.trim() !== "") {
@@ -99,56 +96,52 @@ const FormAddTask = ({ payload }) => {
           dataTask ? onSubmitFormEditTask : onSubmitFormAddTask
         )}
       >
-        <WrapperFlex>
-          <Label htmlFor="newTaskTitle">
-            {dataTask ? "Edit" : "Enter new"} task title
-          </Label>
-          <Input
-            id="newTaskTitle"
-            type="text"
-            placeholder={dataTask ? "Edit task title" : "Enter new task title"}
-            {...register("newTaskTitle", {
-              required: true,
-              minLength: 2,
-              maxLength: 10,
-            })}
+        <LabelForm htmlFor="newTaskTitle">
+          {dataTask ? "Edit" : "Enter new"} task title
+        </LabelForm>
+        <InputForm
+          id="newTaskTitle"
+          type="text"
+          placeholder={dataTask ? "Edit task title" : "Enter new task title"}
+          {...register("newTaskTitle", {
+            required: true,
+            minLength: 2,
+            maxLength: 50,
+          })}
+        />
+        {errors.newTaskTitle && (
+          <ErrorTitleInputNewTask
+            typeError={errors.newTaskTitle.type}
+            requiredText={
+              "Please enter your task. Minimum number of characters is 2, maximum is 50"
+            }
+            maxLengthText={"Maximum number of characters is 50"}
           />
-          {errors.newTaskTitle && (
-            <ErrorTitleInputNewTask
-              typeError={errors.newTaskTitle.type}
-              requiredText={
-                "Please enter your task. Minimum number of characters is 2, maximum is 10"
-              }
-              maxLengthText={"Maximum number of characters is 10"}
-            />
-          )}
-        </WrapperFlex>
-        <WrapperFlex>
-          <Label htmlFor="newTaskText">
-            {dataTask ? "Edit" : "Enter new"} task text
-          </Label>
-          <Textarea
-            id="newTaskText"
-            type="text"
-            placeholder={dataTask ? "Edit task text" : "Enter new task text"}
-            {...register("newTaskText", {
-              required: true,
-              minLength: 2,
-              maxLength: 30,
-            })}
+        )}
+        <LabelForm htmlFor="newTaskText">
+          {dataTask ? "Edit" : "Enter new"} task text
+        </LabelForm>
+        <TextareaForm
+          id="newTaskText"
+          type="text"
+          placeholder={dataTask ? "Edit task text" : "Enter new task text"}
+          {...register("newTaskText", {
+            required: true,
+            minLength: 2,
+            maxLength: 5000,
+          })}
+        />
+        {errors.newTaskText && (
+          <ErrorTitleInputNewTask
+            typeError={errors.newTaskText.type}
+            requiredText={
+              "Please enter your task. Minimum number of characters is 2, maximum is 5000"
+            }
+            maxLengthText={"Maximum number of characters is 5000"}
           />
-          {errors.newTaskText && (
-            <ErrorTitleInputNewTask
-              typeError={errors.newTaskText.type}
-              requiredText={
-                "Please enter your task. Minimum number of characters is 2, maximum is 30"
-              }
-              maxLengthText={"Maximum number of characters is 30"}
-            />
-          )}
-        </WrapperFlex>
-        <WrapperFlex $lexDirection>
-          <Label htmlFor="newTaskStatus">Task status</Label>
+        )}
+        <WrapperFlexForm>
+          <LabelForm htmlFor="newTaskStatus">Task status</LabelForm>
           <InputCheckbox
             id="newTaskStatus"
             type="checkbox"
@@ -156,18 +149,21 @@ const FormAddTask = ({ payload }) => {
               checked: false,
             })}
           />
-        </WrapperFlex>
-        <Btn type="submit" disabled={isLoadingAddData || isLoadingChangeData}>
+        </WrapperFlexForm>
+        <BtnForm
+          type="submit"
+          disabled={isLoadingAddData || isLoadingChangeData}
+        >
           {isLoadingAddData || isLoadingChangeData ? (
             <LoaderThreeCirclesSmall
               isLoading={isLoadingAddData || isLoadingChangeData}
             />
           ) : dataTask ? (
-            "Edit task"
+            "Save"
           ) : (
             "Add task"
           )}
-        </Btn>
+        </BtnForm>
       </Form>
       {(errorAddData || errorChangeData) && (
         <ErrorMessage error={errorAddData || errorChangeData} />

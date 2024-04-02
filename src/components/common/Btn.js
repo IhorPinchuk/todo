@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 const Btn = styled.button`
-  display: block;
-  /* position: ${(props) => (props.$positionRelative ? "relative" : "static")}; */
-  margin-left: ${(props) => (props.$marginLeftAuto ? "auto" : 0)};
-  margin-right: ${(props) => (props.$marginRightAuto ? "auto" : 0)};
-  margin-bottom: ${(props) => (props.$marginBottom ? "20px" : 0)};
-  width: 100px;
-  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  padding: 10px;
   color: var(--btn-text-color);
   background-color: var(--btn-bg-color);
   border: transparent;
@@ -17,6 +16,7 @@ const Btn = styled.button`
   &:hover,
   &:focus {
     background-color: var(--btn-hover-bg-color);
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
   }
 
   &:disabled {

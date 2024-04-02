@@ -1,5 +1,6 @@
 import React from "react";
-import ErrorText from "../common/ErrorText";
+import { ErrorText } from "./Error.styled";
+
 
 const ErrorTitleInputNewTask = ({ typeError, requiredText, maxLengthText }) => {
   switch (typeError) {

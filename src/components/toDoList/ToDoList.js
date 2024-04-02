@@ -1,13 +1,13 @@
-import Ul from "../common/Ul";
-import ToDoListItem from "./ToDoListItem";
+import { UlTodoList } from "./ToDoList.styled";
+import ToDoListItem from "./toDoListItem/ToDoListItem";
 
-const ToDoList = ({ tasksArray, setState }) => {
+const ToDoList = ({ tasksArray, setTasks }) => {
   return (
-    <Ul>
-      {tasksArray.map((task) => (
-        <ToDoListItem key={task.id} task={task} setState={setState} />
+    <UlTodoList>
+      {tasksArray.map((task, index) => (
+        <ToDoListItem key={task.id} task={task} index={index} setTasks={setTasks} />
       ))}
-    </Ul>
+    </UlTodoList>
   );
 };
 
