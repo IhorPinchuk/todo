@@ -27,8 +27,8 @@ const FormAddTask = ({ payload }) => {
   } = useForm();
   const { setTasks, setIsOpenModalAddTask, dataTask, setIsOpenModalEditTask } =
     payload;
-  const { dataAdd, isLoadingAddData, errorAddData, postData } = usePost();
-  const { dataChange, isLoadingChangeData, errorChangeData, putData } =
+  const { dataAdd: dataTaskAdd, isLoadingAddData, errorAddData, postData } = usePost();
+  const { dataChange: dataTaskChange, isLoadingChangeData, errorChangeData, putData } =
     usePut();
 
   useEffect(() => {
@@ -40,20 +40,20 @@ const FormAddTask = ({ payload }) => {
   }, [dataTask, setValue]);
 
   useEffect(() => {
-    if (dataAdd && Object.keys(dataAdd).length !== 0) {
-      setTasks((prevTasks) => [...prevTasks, dataAdd]);
+    if (dataTaskAdd && Object.keys(dataTaskAdd).length !== 0) {
+      setTasks((prevTasks) => [...prevTasks, dataTaskAdd]);
       reset();
       setIsOpenModalAddTask(
         (prevIsOpenModalAddTask) => !prevIsOpenModalAddTask
       );
     }
-  }, [dataAdd, setTasks, reset, setIsOpenModalAddTask]);
+  }, [dataTaskAdd, setTasks, reset, setIsOpenModalAddTask]);
 
   useEffect(() => {
-    if (dataChange && Object.keys(dataChange).length !== 0) {
+    if (dataTaskChange && Object.keys(dataTaskChange).length !== 0) {
       setTasks((prevTasks) =>
         prevTasks.map((task) =>
-          task.id === dataChange.id ? { ...task, ...dataChange } : task
+          task.id === dataTaskChange.id ? { ...task, ...dataTaskChange } : task
         )
       );
 
@@ -61,7 +61,7 @@ const FormAddTask = ({ payload }) => {
         (prevIsOpenModalEditTask) => !prevIsOpenModalEditTask
       );
     }
-  }, [dataChange, setTasks, setIsOpenModalEditTask]);
+  }, [dataTaskChange, setTasks, setIsOpenModalEditTask]);
 
   const onSubmitFormAddTask = (data) => {
     if (data.newTaskTitle.trim() !== "" && data.newTaskText.trim() !== "") {
@@ -112,10 +112,8 @@ const FormAddTask = ({ payload }) => {
         {errors.newTaskTitle && (
           <ErrorTitleInputNewTask
             typeError={errors.newTaskTitle.type}
-            requiredText={
-              "Please enter your task. Minimum number of characters is 2, maximum is 50"
-            }
-            maxLengthText={"Maximum number of characters is 50"}
+            minLength={2}
+            maxLength={50}
           />
         )}
         <LabelForm htmlFor="newTaskText">
@@ -134,10 +132,8 @@ const FormAddTask = ({ payload }) => {
         {errors.newTaskText && (
           <ErrorTitleInputNewTask
             typeError={errors.newTaskText.type}
-            requiredText={
-              "Please enter your task. Minimum number of characters is 2, maximum is 5000"
-            }
-            maxLengthText={"Maximum number of characters is 5000"}
+            minLength={"2"}
+            maxLength={"5000"}
           />
         )}
         <WrapperFlexForm>

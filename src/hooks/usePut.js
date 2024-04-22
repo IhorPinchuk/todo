@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import baseUrl from "../api/baseUrl";
 
 const usePut = () => {
   const [dataChange, setDataChange] = useState(null);
@@ -9,7 +10,7 @@ const usePut = () => {
   const putData = async (url, data) => {
     setIsLoadingChangeData(true);
     try {
-      const responce = await axios.put(url, data);
+      const responce = await axios.put(baseUrl + url, data);
       if (responce.data) {
         setDataChange(responce.data);
       }

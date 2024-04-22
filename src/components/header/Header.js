@@ -1,32 +1,44 @@
 import React from "react";
 import ContainerStyled from "../common/ContainerStyled";
-import {
+import {  
   HeaderStyled,
   LiHeader,
   NavHeader,
   NavLinkStyledHeader,
   UlHeader,
+  WrapperHeader,
 } from "./Header.styled";
+import { useUserAuthenticated } from "../../context/UserAuthenticatedContext";
+import LogOut from "../logOut/LogOut";
 
 const Header = () => {
-  return (
+  const { isAuthenticated } = useUserAuthenticated();
+
+    return (
     <HeaderStyled>
       <ContainerStyled>
+        <WrapperHeader>
         <NavHeader>
           <UlHeader>
             <LiHeader>
               <NavLinkStyledHeader to="/">Home</NavLinkStyledHeader>
             </LiHeader>
-            <LiHeader>
-              <NavLinkStyledHeader to="/todos" end>
-                Todo list
-              </NavLinkStyledHeader>
-            </LiHeader>
-            <LiHeader>
-              <NavLinkStyledHeader to="/about">About</NavLinkStyledHeader>
-            </LiHeader>
+            {isAuthenticated && (
+              <>
+                <LiHeader>
+                  <NavLinkStyledHeader to="/todos" end>
+                    Todo list
+                  </NavLinkStyledHeader>
+                </LiHeader>
+                <LiHeader>
+                  <NavLinkStyledHeader to="/about">About</NavLinkStyledHeader>
+                </LiHeader>
+              </>
+            )}
           </UlHeader>
         </NavHeader>
+        {isAuthenticated && <LogOut />}
+        </WrapperHeader>
       </ContainerStyled>
     </HeaderStyled>
   );

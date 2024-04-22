@@ -2,14 +2,14 @@ import React from "react";
 import { ErrorText } from "./Error.styled";
 
 
-const ErrorTitleInputNewTask = ({ typeError, requiredText, maxLengthText }) => {
+const ErrorTitleInputNewTask = ({ typeError, minLength, maxLength }) => {
   switch (typeError) {
     case "required":
-      return <ErrorText>{requiredText}</ErrorText>;
+      return <ErrorText>This field is required.</ErrorText>;
     case "minLength":
-      return <ErrorText>Minimum number of characters is 2</ErrorText>;
+      return <ErrorText>Minimum number of characters is {minLength}</ErrorText>;
     case "maxLength":
-      return <ErrorText>{maxLengthText}</ErrorText>;
+      return <ErrorText>Maximum number of characters is {maxLength}</ErrorText>;
     default:
       <ErrorText>An unknown error occurred</ErrorText>;
   }

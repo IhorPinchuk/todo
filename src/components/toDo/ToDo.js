@@ -32,11 +32,11 @@ const ToDo = () => {
     if (!todos) {
       fetchData("todos");
     }
-  }, [fetchData, todos]);
+  }, [todos, fetchData, tasks]);
 
   useEffect(() => {
     if (todos) {
-      setTasks((prevTasks) => [...prevTasks, ...todos]);
+      setTasks((prevTasks) => [...todos]);
     }
   }, [todos]);
 
@@ -66,7 +66,7 @@ const ToDo = () => {
   const handleToogleModalAddTask = () => {
     setIsOpenModalAddTask((prevIsOpenModalAddTask) => !prevIsOpenModalAddTask);
   };
-  
+
   return (
     <>
       <SectionStyled>

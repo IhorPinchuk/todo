@@ -9,6 +9,13 @@ export const HeaderStyled = styled.header`
   padding-bottom: 15px;
 `;
 
+export const WrapperHeader = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const NavHeader = styled(Nav)`
   display: flex;
   justify-content: center;
@@ -25,6 +32,8 @@ export const LiHeader = styled(Li)``;
 export const NavLinkStyledHeader = styled(NavLinkStyled)`
   position: relative;
   display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
   &::after {
     content: "";
@@ -35,7 +44,7 @@ export const NavLinkStyledHeader = styled(NavLinkStyled)`
     height: 2px;
     background-color: var(--btn-hover-bg-color);
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s;
   }
 
   &.active {

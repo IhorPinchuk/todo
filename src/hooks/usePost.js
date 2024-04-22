@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import baseUrl from "../api/baseUrl";
 
 export const usePost = () => {
   const [dataAdd, setDataAdd] = useState({});
@@ -9,7 +10,7 @@ export const usePost = () => {
   const postData = async (url, data) => {
     setIsLoadingAddData(true);
     try {
-      const responce = await axios.post(url, data);
+      const responce = await axios.post(baseUrl + url, data);
       if (responce.data) {
         setDataAdd(responce.data);
       }

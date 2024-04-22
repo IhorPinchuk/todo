@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
             --modal-window-shadow: rgba(22, 22, 22, 0.05);
             --modal-title-color: #ffffff;
             --modal-icon-color: #ffffff80;
+            --modal-icon-color-hover: rgb(191, 240, 166);
 
             --bg-color-active-task: #95e18d;
             --bg-color-completed-task: #de8585;

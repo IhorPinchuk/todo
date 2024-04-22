@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import baseUrl from "../api/baseUrl";
 
 const useDelete = () => {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
@@ -8,7 +9,7 @@ const useDelete = () => {
   const deleteData = async (url, onSuccess) => {
     setIsLoadingDelete(true);
     try {
-        await axios.delete(url);
+        await axios.delete(baseUrl + url);
         onSuccess();        
     } catch (error) {
         console.warn("Something went wrong!", error);

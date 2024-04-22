@@ -9,16 +9,47 @@
     },
     {
       "title": "Task 15",
-      "description": "   task 15",
-      "checked": false,
-      "creationDate": "02.04.2024",
+      "description": "   task 15 ",
+      "checked": true,
+      "creationDate": "22.04.2024",
       "id": 4
     },
     {
-      "title": "цццq",
-      "description": "    task 15 \nfnghhg",
-      "checked": true,
-      "id": 5
+      "title": "ghg",
+      "description": "gfhf\nrtrttjj6jj6",
+      "checked": false,
+      "id": 5,
+      "creationDate": "22.04.2024"
+    },
+    {
+      "title": "hhh",
+      "description": "fhfhf",
+      "checked": false,
+      "creationDate": "04.04.2024",
+      "id": 6
+    },
+    {
+      "title": "Task 5",
+      "description": "rewrwr",
+      "checked": false,
+      "creationDate": "18.04.2024",
+      "id": 7
+    }
+  ],
+  "auth": [
+    {
+      "name": "zzz",
+      "email": "fh@dg",
+      "password": "zzz",
+      "creationDate": "18.04.2024",
+      "id": 1
+    },
+    {
+      "name": "qwerty",
+      "email": "qwerty@com",
+      "password": "qwerty",
+      "creationDate": "22.04.2024",
+      "id": 2
     }
   ]
 }

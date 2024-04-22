@@ -26,7 +26,7 @@ const SingleTodo = () => {
   const params = useParams();
   const [task, setTask] = useState({});
   const { data: todo, isLoading, error, fetchData } = useFetch();
-  const { dataChange, isLoadingChangeData, errorChangeData, putData } = usePut();
+  const { dataChange: dataSingleChangeTodo, isLoadingChangeData, errorChangeData, putData } = usePut();
   const [isEditing, setIsEditing] = useState(false);
   const [editedTodo, setEditedTodo] = useState({
     title: "",
@@ -53,11 +53,11 @@ const SingleTodo = () => {
   }, [todo]);
 
   useEffect(() => {
-    if (dataChange) {
-      setTask(prevTask => ({...prevTask, ...dataChange}));
+    if (dataSingleChangeTodo) {
+      setTask(prevTask => ({...prevTask, ...dataSingleChangeTodo}));
       setIsEditing(false);
     }
-  }, [dataChange]);
+  }, [dataSingleChangeTodo]);
 
   useEffect(() => {
     if (error) {

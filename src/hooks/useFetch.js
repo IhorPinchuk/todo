@@ -6,7 +6,7 @@ export const useFetch = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  
   const fetchData =useCallback(async (url) => {
     setIsLoading(true);
     try {
@@ -24,3 +24,5 @@ export const useFetch = () => {
 
   return { data, isLoading, error, fetchData };
 };
+
+

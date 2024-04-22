@@ -35,7 +35,7 @@ export const CloseButton = styled.div`
   &:hover,
   :focus {
     svg {
-      stroke: var(--header-theme-select-text-color-hover);
+      stroke: var(--modal-icon-color-hover);
       transition: stroke 0.3s ease;
     }
   }

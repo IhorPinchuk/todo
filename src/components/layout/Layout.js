@@ -5,8 +5,8 @@ import Main from "../main/Main";
 
 const Layout = () => {
 return (
-    <>
-    <Header />
+    <>    
+    <Header />    
     <Main />
     {/* <Footer /> */}
     </>

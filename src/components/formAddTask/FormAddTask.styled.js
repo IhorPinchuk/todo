@@ -18,9 +18,7 @@ export const LabelForm = styled(Label)`
 cursor: pointer;
 `;
 
-export const InputForm = styled(Input)`
-cursor: pointer;
-`;
+export const InputForm = styled(Input)``;
 
 export const TextareaForm = styled(Textarea)`
 height: 100px;
